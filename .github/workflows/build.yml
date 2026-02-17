@@ -12,7 +12,7 @@ jobs:
       image: ghcr.io/tony778778/lynfera-builds:latest
       credentials:
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PAT_GITHUB_TOKEN }}
       options: >-
         --memory=2g
         --cpus=2
