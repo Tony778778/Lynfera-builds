@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     container:
-      image: ghcr.io/tony778778/lynfera-builds:latest
+      image: ghcr.io/tony778778/lynfera-builds:gh-checks-ready
       credentials:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GITHUB_TOKEN }}
