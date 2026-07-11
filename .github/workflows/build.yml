@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     container:
-      image: ghcr.io/tony778778/lynfera-builds:gh-checks-ready
+      image: ghcr.io/tony778778/lynfera-builds:latest
       credentials:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GITHUB_TOKEN }}
@@ -40,7 +40,8 @@ jobs:
             "${{ secrets.CLOUD_SECRETKEY }}" \
             "${{ secrets.CLOUD_ENDPOINT }}" \
             "${{ secrets.KAFKA_USERNAME }}" \
-            "${{ secrets.KAFKA_PASSWORD }}" | node /app/builder.js
+            "${{ secrets.KAFKA_PASSWORD }}" \
+            "${{ secrets.KAFKA_CA }}" | node /app/builder.js
 
           
   error_handle:
@@ -61,6 +62,7 @@ jobs:
         env:
           KAFKA_USERNAME: ${{ secrets.KAFKA_USERNAME }}
           KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }}
+          KAFKA_CA: ${{ secrets.KAFKA_CA }}
           DEPLOYMENT_ID: ${{ github.event.client_payload.deploymentId }}
           PROJECT_ID: ${{ github.event.client_payload.projectId }}
         run: node scripts/errorHandler.js
